@@ -6,26 +6,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
-import { RestaurantComponent } from './suppliers/restaurant/restaurant.component';
-import { SupermarketComponent } from './suppliers/supermarket/supermarket.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
+import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
+import { SuppliersItemComponent } from './suppliers/suppliers-list/suppliers-item/suppliers-item.component';
+import { SuppliersService } from './suppliers/suppliers.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     SuppliersComponent,
-    RestaurantComponent,
-    SupermarketComponent,
     NavbarComponent,
-    AboutComponent
+    AboutComponent,
+    SuppliersListComponent,
+    SuppliersItemComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [SuppliersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
