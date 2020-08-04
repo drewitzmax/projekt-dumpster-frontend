@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SuppliersService } from '../suppliers.service';
+import { Supplier } from '../supplier.model';
 
 @Component({
   selector: 'app-suppliers-list',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./suppliers-list.component.scss']
 })
 export class SuppliersListComponent implements OnInit {
+  suppliers: Supplier[];
+  constructor(private supService: SuppliersService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.suppliers = this.supService.getSuppliers();
   }
 
 }

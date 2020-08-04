@@ -1,9 +1,17 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-md-6">
         <div>
-            <span>Supplier Name</span>
-            <span>Typ</span>
-            <span>Items</span>
+            <span>{{ supplier.name }}</span>
+            <span>{{ supplier.type }}</span>
         </div>
     </div>
-</div>
+</div> -->
+<a 
+href="#" class="list-group-item clearfix"
+>
+    
+<div class="pull-left">
+        <h4 class="list-group-item-heading">{{supplier.name}}</h4>
+        <p class="list-group-item-text">{{supplier.type}}</p>
+    </div>
+</a>
