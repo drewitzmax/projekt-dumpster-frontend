@@ -8,6 +8,8 @@ import { UsersComponent } from './users/users.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { RestaurantComponent } from './suppliers/restaurant/restaurant.component';
 import { SupermarketComponent } from './suppliers/supermarket/supermarket.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { SupermarketComponent } from './suppliers/supermarket/supermarket.compon
     UsersComponent,
     SuppliersComponent,
     RestaurantComponent,
-    SupermarketComponent
+    SupermarketComponent,
+    NavbarComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
