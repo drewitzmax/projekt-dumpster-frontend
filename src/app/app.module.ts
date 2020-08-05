@@ -10,7 +10,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
 import { SuppliersItemComponent } from './suppliers/suppliers-list/suppliers-item/suppliers-item.component';
-import { SuppliersService } from './suppliers/suppliers.service'
+import { SuppliersService } from './suppliers/suppliers.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SuppliersService } from './suppliers/suppliers.service'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [SuppliersService],
   bootstrap: [AppComponent]

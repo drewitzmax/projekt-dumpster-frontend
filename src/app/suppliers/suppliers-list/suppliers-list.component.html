@@ -1,1 +1,15 @@
-<app-suppliers-item *ngFor="let supplierElement of suppliers" [supplier]="supplierElement"></app-suppliers-item>
+<!-- Ohne ng-bootsrap -->
+<!-- <div class="row">
+    <div class="col-md-12">
+        <ngb-accordion [closeOthers]="true" activeIds="static-1">
+            <app-suppliers-item *ngFor="let supplierElement of suppliers; let i = index" [supplier]="supplierElement"></app-suppliers-item>
+        </ngb-accordion>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col-md-12">
+        <ngb-accordion [closeOthers]="true" activeIds="static-1"></ngb-accordion>
+            <app-suppliers-item></app-suppliers-item>
+    </div>
+</div>

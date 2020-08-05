@@ -7,12 +7,14 @@ import { Supplier } from '../supplier.model';
   templateUrl: './suppliers-list.component.html',
   styleUrls: ['./suppliers-list.component.scss']
 })
-export class SuppliersListComponent implements OnInit {
-  suppliers: Supplier[];
+export class SuppliersListComponent implements OnInit { 
+//Ohne ng-bootsrap
+//suppliers: Supplier[];
   constructor(private supService: SuppliersService) { }
 
   ngOnInit() {
-    this.suppliers = this.supService.getSuppliers();
+    //Ohne ng-bootsrap
+    //this.suppliers = this.supService.getSuppliers(); 
   }
 
 }
