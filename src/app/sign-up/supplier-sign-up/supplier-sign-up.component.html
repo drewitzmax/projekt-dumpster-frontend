@@ -1,0 +1,63 @@
+<div class="container">
+    <h2 class="text-center mt-3 mb-3">Create your account</h2>
+    <form class="row flex-wrap justify-content-around" [formGroup]="this.signUpService.supplierform" (ngSubmit)="onSubmit()">
+      <div class="row mb-5">
+        <input type="hidden" formControlName="$id">
+  
+        <div class="form-group col-6">
+          <label class="lead">Name</label>
+          <input formControlName="companyName" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.companyName.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.companyName.errors.pattern">Only letters and spaces</div>
+          <div class="invalid-feedback" *ngIf="submitted && formControls.companyName.errors.required">This field is required</div>
+        </div>
+  
+        <div class="form-group col-6">
+          <label class="lead">Address</label>
+          <input formControlName="address" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.address.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.address.errors">This field is required</div>
+        </div>
+  
+        <div class="form-group col-6">
+          <label class="lead">Email</label>
+          <input formControlName="email" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.email.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors.email">This field must be an email</div>
+          <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors.required">This field is required</div>
+        </div>
+
+        <div class="form-group col-6">
+          <label class="lead">Password</label>
+          <input formControlName="password" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.password.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.password.errors">This field is required</div>
+        </div>
+
+        <div class="form-group col-6">
+            <label class="lead">Phone Number</label>
+            <input formControlName="phonenumber" class="form-control"
+              [ngClass]="{'is-invalid':submitted && formControls.phonenumber.errors}">
+            <div class="invalid-feedback" *ngIf="submitted && formControls.phonenumber.errors.required">This field is required</div>
+            <div class="invalid-feedback" *ngIf="submitted && formControls.phonenumber.errors.pattern">Must b a number</div>
+        </div>
+
+        <div class="form-group col-6">
+            <label class="lead">Homepage</label>
+            <input formControlName="homepage" class="form-control"
+              [ngClass]="{'is-invalid':submitted && formControls.homepage.errors}">
+        </div>
+        <div class="form-group col-6">
+            <label class="lead">Picture</label>
+            <input formControlName="picture" class="form-control"
+              [ngClass]="{'is-invalid':submitted && formControls.picture.errors}">
+        </div>
+  
+        <div class="form-group col-6 text-center my-auto">
+          <input type="submit" class="btn btn-success" value="SignUp">
+        </div>
+      </div>
+    </form>
+  
+  </div>
+  
