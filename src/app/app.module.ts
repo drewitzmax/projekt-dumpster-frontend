@@ -12,7 +12,7 @@ import { AboutComponent } from './about/about.component';
 import { SuppliersListComponent } from './suppliers/suppliers-list/suppliers-list.component';
 import { SuppliersItemComponent } from './suppliers/suppliers-list/suppliers-item/suppliers-item.component';
 import { SuppliersService } from './suppliers/suppliers.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
