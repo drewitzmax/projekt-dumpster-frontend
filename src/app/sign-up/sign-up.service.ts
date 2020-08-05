@@ -25,8 +25,7 @@ export class SignUpService {
     email:  new FormControl('', Validators.compose([Validators.email, Validators.required])),
     password:  new FormControl('', Validators.required),
     phonenumber: new FormControl('', Validators.compose([Validators.pattern('[+0-9 ]*'), Validators.required])),
-    homepage: new FormControl('', Validators.pattern('[+0-9 ]*')),
+    homepage: new FormControl(''),
     picture: new FormControl(''),
-
   });
 }
