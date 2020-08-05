@@ -1,0 +1,50 @@
+<div class="container">
+  <h2 class="text-center mt-3 mb-3">Create your account</h2>
+  <form class="row flex-wrap justify-content-around" [formGroup]="this.signUpService.userform" (ngSubmit)="onSubmit()">
+    <div class="row mb-5">
+      <input type="hidden" formControlName="$id">
+
+      <div class="form-group col-6">
+        <label class="lead">First Name</label>
+        <input formControlName="firstName" class="form-control"
+          [ngClass]="{'is-invalid':submitted && formControls.firstName.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.firstName.errors">Only letters and spaces</div>
+      </div>
+
+      <div class="form-group col-6">
+        <label class="lead">Last Name</label>
+        <input formControlName="lastName" class="form-control"
+          [ngClass]="{'is-invalid':submitted && formControls.lastName.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.lastName.errors">Only letters and spaces</div>
+      </div>
+
+      <div class="form-group col-6">
+        <label class="lead">Email</label>
+        <input formControlName="email" class="form-control"
+          [ngClass]="{'is-invalid':submitted && formControls.email.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors.email">Must be an email</div>
+        <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors.required">This field is required</div>
+      </div>
+
+
+
+      <div class="form-group col-6">
+        <label class="lead">Username</label>
+        <input formControlName="username" class="form-control"
+          [ngClass]="{'is-invalid':submitted && formControls.username.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.username.errors">This field is required</div>
+      </div>
+      <div class="form-group col-6">
+        <label class="lead">Password</label>
+        <input formControlName="password" class="form-control"
+          [ngClass]="{'is-invalid':submitted && formControls.password.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && formControls.password.errors">This field is required</div>
+      </div>
+
+      <div class="form-group col-6 text-center my-auto">
+        <input type="submit" class="btn btn-success" value="SignUp">
+      </div>
+    </div>
+  </form>
+
+</div>
