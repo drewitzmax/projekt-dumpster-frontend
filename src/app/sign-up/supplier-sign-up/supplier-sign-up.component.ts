@@ -11,24 +11,25 @@ export class SupplierSignUpComponent implements OnInit {
 
   constructor(public signUpService: SignUpService) { }
   submitted: boolean;
+  form = this.signUpService.userform;
   formControls = this.signUpService.supplierform.controls;
   showSuccessMessage: boolean;
 
   ngOnInit(): void {
   }
   onSubmit() {
-    this.submitted = true;
-    // if (this.travelService.form.valid) {
-    //   if (this.travelService.form.get('$key').value == null) {
-    //     this.travelService.insertTravel(this.travelService.form.value);
-    //   } else {
-    //     this.travelService.updateTravel(this.travelService.form.value);
-    //     this.showSuccessMessage = true;
-    //     setTimeout(() => this.showSuccessMessage = false, 3000);
-    //     this.submitted = false;
-    //     this.travelService.form.reset();
-    //   }
-    // }
+  //   this.submitted = true;
+  //   if (this.form.valid) {
+
+  //       this.signUpService.addUser(new Supplier(null,
+  //                                           this.form.get("firstName").value.toString(), 
+  //                                           this.form.get("lastName").value.toString(),
+  //                                           this.form.get("username").value.toString(),
+  //                                           this.form.get("password").value.toString(),
+  //                                           this.form.get("email").value.toString()),
+  //                       ).subscribe(user => console.log(user));
+      
+  //   }
   }
 
 }
