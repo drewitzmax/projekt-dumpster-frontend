@@ -17,6 +17,8 @@ import { UserSignUpComponent } from './sign-up/user-sign-up/user-sign-up.compone
 import { SupplierSignUpComponent } from './sign-up/supplier-sign-up/supplier-sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSelectModule } from '@angular/material/select';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
 
 
 
@@ -32,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select';
     SignUpComponent,
     UserSignUpComponent,
     SupplierSignUpComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
     ReactiveFormsModule
   ],
-  providers: [SuppliersService],
+  providers: [SuppliersService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
