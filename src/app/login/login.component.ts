@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +10,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  url = "http://localhost:8080";
+
+  submitted: boolean;
+  greeting = {};
 
   
-  constructor(private http: HttpClient) {
+  constructor(private loginService: LoginService) {
 
    }
-  submitted: boolean;
 
   loginForm = new FormGroup({
     username : new FormControl('',Validators.required),
@@ -27,15 +29,16 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log("submitted");
-    
-    console.log(this.loginForm.controls.username.value);
-    console.log(this.loginForm.controls.password.value);
 
-    this.http.get(this.url + "/login").toPromise().then(
-      data => {console.log(data);
+    let username = this.loginForm.controls.username.value;
+    let password = this.loginForm.controls.password.value;
+    
+    let resp = this.loginService.login(username,password);
+    resp.subscribe(data=>{
+      console.log(data);
     })
     
+
 
   }
 
