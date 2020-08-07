@@ -26,12 +26,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.http.get(this.url + "/login").subscribe(
+    this.submitted = true;
+    console.log("submitted");
+    
+    console.log(this.loginForm.controls.username.value);
+    console.log(this.loginForm.controls.password.value);
+
+    this.http.get(this.url + "/login").toPromise().then(
       data => {console.log(data);
     })
     
-    this.submitted = true;
-    console.log("submitted");
 
   }
 
