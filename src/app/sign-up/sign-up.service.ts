@@ -52,7 +52,7 @@ export class SignUpService {
   addSupplier(supplier: Supplier): Observable<Supplier> {
     return this.http.post<Supplier>(this.supplierUrl, supplier)
       .pipe(
-        catchError(this.handleError('addUser', supplier))
+        catchError(this.handleError('addSupplier', supplier))
       );
 
   }

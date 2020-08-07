@@ -15,6 +15,8 @@ export class UserSignUpComponent implements OnInit {
   form = this.signUpService.userform;
   formControls = this.signUpService.userform.controls;
   showSuccessMessage: boolean;
+  fieldTextType: boolean;
+
 
   ngOnInit(): void {
   }
@@ -27,9 +29,10 @@ export class UserSignUpComponent implements OnInit {
                                             this.form.get("lastName").value.toString(),
                                             this.form.get("username").value.toString(),
                                             this.form.get("password").value.toString(),
-                                            this.form.get("email").value.toString()),
-                        ).subscribe(user => console.log(user));
+                                            this.form.get("email").value.toString()),)
+                          .subscribe(user => console.log(user));
       
     }
   }
+
 }

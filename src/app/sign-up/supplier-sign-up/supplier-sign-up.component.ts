@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignUpService } from '../sign-up.service';
+import { Supplier } from 'src/app/suppliers/supplier.model';
 
 
 @Component({
@@ -11,25 +12,28 @@ export class SupplierSignUpComponent implements OnInit {
 
   constructor(public signUpService: SignUpService) { }
   submitted: boolean;
-  form = this.signUpService.userform;
+  form = this.signUpService.supplierform;
   formControls = this.signUpService.supplierform.controls;
   showSuccessMessage: boolean;
 
   ngOnInit(): void {
   }
-  onSubmit() {
-  //   this.submitted = true;
-  //   if (this.form.valid) {
 
-  //       this.signUpService.addUser(new Supplier(null,
-  //                                           this.form.get("firstName").value.toString(), 
-  //                                           this.form.get("lastName").value.toString(),
-  //                                           this.form.get("username").value.toString(),
-  //                                           this.form.get("password").value.toString(),
-  //                                           this.form.get("email").value.toString()),
-  //                       ).subscribe(user => console.log(user));
+  onSubmit() {
+    this.submitted = true;
+    if (this.form.valid) {
+      console.log("IN")
+        this.signUpService.addSupplier(new Supplier(null,
+                                                    this.form.get("companyName").value.toString(), 
+                                                    this.form.get("address").value.toString(),
+                                                    this.form.get("phonenumber").value.toString(),
+                                                    this.form.get("email").value.toString(),
+                                                    this.form.get("password").value.toString(),
+                                                    this.form.get("homepage").value.toString(),
+                                                    new Array(this.form.get("picture").value.toString()))                                                                              
+                        ).subscribe(supplier => console.log(supplier));
       
-  //   }
+    }
   }
 
 }
