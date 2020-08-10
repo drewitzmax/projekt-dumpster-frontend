@@ -22,7 +22,6 @@ export class SupplierSignUpComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.form.valid) {
-      console.log("IN")
         this.signUpService.addSupplier(new Supplier(null,
                                                     this.form.get("companyName").value.toString(), 
                                                     this.form.get("address").value.toString(),
@@ -30,8 +29,8 @@ export class SupplierSignUpComponent implements OnInit {
                                                     this.form.get("email").value.toString(),
                                                     this.form.get("password").value.toString(),
                                                     this.form.get("homepage").value.toString(),
-                                                    new Array(this.form.get("picture").value.toString()))                                                                              
-                        ).subscribe(supplier => console.log(supplier));
+                                                    new Array(this.form.get("picture").value.toString())))
+                         .subscribe(supplier => console.log(supplier));
       
     }
   }
