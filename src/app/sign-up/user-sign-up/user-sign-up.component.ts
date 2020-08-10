@@ -29,7 +29,7 @@ export class UserSignUpComponent implements OnInit {
                                             this.form.get("lastName").value.toString(),
                                             this.form.get("username").value.toString(),
                                             this.form.get("password").value.toString(),
-                                            this.form.get("email").value.toString()),)
+                                            this.form.get("email").value.toString()))
                           .subscribe(user => console.log(user));
       
     }
