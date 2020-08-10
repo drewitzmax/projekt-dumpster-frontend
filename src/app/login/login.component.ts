@@ -13,12 +13,13 @@ export class LoginComponent implements OnInit {
 
 
   submitted: boolean;
+  authenticated: boolean;
 
-  
   constructor(private loginService: LoginService) {
+    this.authenticated = this.loginService.authenticated;
     if (this.loginService.currentUserValue) { 
-      console.log(`Logged in as: ${this.loginService.currentUserValue}`)
-    }else {
+      console.log(`Logged in as: ${localStorage.getItem('currentUserName')}`)
+    } else {
       console.log("Not logged in")
     }
 

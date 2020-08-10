@@ -12,7 +12,7 @@ export class SuppliersComponent implements OnInit {
 
   constructor(private supService: SuppliersService, private loginService: LoginService) {
     if (this.loginService.currentUserValue) { 
-      console.log(`Logged in as: ${this.loginService.currentUserValue}`)
+      console.log(`Logged in as: ${this.loginService.username}`)
     }else {
       console.log("Not logged in")
     }

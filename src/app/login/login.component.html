@@ -1,5 +1,5 @@
-<div class="row">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<!-- <div class="row">
+    <form  class="form-inline" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group col-6">
             <label class="lead">username</label>
             <input formControlName="username" class="form-control"
@@ -8,12 +8,31 @@
           </div>
           <div class="form-group col-6">
             <label class="lead">password</label>
-            <input formControlName="password" class="form-control"
+            <input c class="form-control"
               [ngClass]="{'is-invalid':submitted && loginForm.controls.errors}">
             <div class="invalid-feedback" *ngIf="submitted && loginForm.controls.password.errors">This field is required</div>
             <button class="btn btn-success" type="submit">Login</button>
           </div>
         </form>
         <button class="btn btn-danger" (click)="onLogout()">Logout</button>
-</div>
+</div> -->
+  <form class="form-inline" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    
+    <div class="input-group form-group w-25">
+  <!--    <div class="input-group-prepend">
+        <span class="input-group-text" id="usernameInput">username</span>
+      </div> -->
+      <input type="text" class="form-control" formControlName="username"  placeholder="username" aria-label="username" aria-describedby="usernameInput">
+    </div>
+    
+    <div class="input-group form-group w-25">
+  <!--     <div class="input-group-prepend">
+        <span class="input-group-text"  id="passwordInput">password</span>
+      </div> -->
+      <input type="password" class="form-control" formControlName="password" placeholder="password" aria-label="password" aria-describedby="passwordInput">
+    </div>
 
+    <button [ngClass]="{'hidden': authenticated}" class="btn btn-success" type="submit">Login</button>
+    
+    <button [ngClass]="{'hidden': !authenticated}" class="btn btn-danger" type="button" (click)="onLogout()">Logout</button>
+  </form>
