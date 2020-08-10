@@ -13,6 +13,7 @@
             <div class="invalid-feedback" *ngIf="submitted && loginForm.controls.password.errors">This field is required</div>
             <button class="btn btn-success" type="submit">Login</button>
           </div>
-    </form>
+        </form>
+        <button class="btn btn-danger" (click)="onLogout()">Logout</button>
 </div>
 
