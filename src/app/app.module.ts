@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -35,6 +36,7 @@ import { LoginService } from './login/login.service';
     UserSignUpComponent,
     SupplierSignUpComponent,
     LoginComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
