@@ -10,17 +10,17 @@
       </div>
       <div *ngFor="let offer of offers; let index = index">
         <div *ngIf="offer.amount_remaining > 0; else elseBlock" class="row card-text">
-          <div class="col-md6">
+          <div class="col-md-9">
             <p>{{offer.amount_offered}} out of {{offer.amount_remaining}} Meals remain</p>
           </div>
-          <div class="col-md6">
-            <button>Order now</button>
+          <div class="col-md-3">
+            <button class="btn btn-success btn-sm" (click)="claimOfferOnClick(offer.offer_id)">Order now</button>
           </div>
         </div>
       </div>
     </div>
     <ng-template #elseBlock>
-      <p class="card-text"> No offers available</p>
+      <p class="card-text">No offers available</p>
     </ng-template>
   </div>
 </div>
