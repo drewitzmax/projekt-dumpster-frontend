@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { HeaderComponent } from './header/header.component';
+import { OffersComponent } from './offers/offers.component';
 
 
 
@@ -37,6 +38,7 @@ import { HeaderComponent } from './header/header.component';
     SupplierSignUpComponent,
     LoginComponent,
     HeaderComponent,
+    OffersComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule
   ],
   providers: [SuppliersService, LoginService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [OffersComponent]
 })
 export class AppModule { }
