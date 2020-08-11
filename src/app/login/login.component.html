@@ -16,23 +16,27 @@
         </form>
         <button class="btn btn-danger" (click)="onLogout()">Logout</button>
 </div> -->
-  <form class="form-inline" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    
-    <div class="input-group form-group w-25">
-  <!--    <div class="input-group-prepend">
-        <span class="input-group-text" id="usernameInput">username</span>
-      </div> -->
-      <input type="text" class="form-control" formControlName="username"  placeholder="username" aria-label="username" aria-describedby="usernameInput">
-    </div>
-    
-    <div class="input-group form-group w-25">
-  <!--     <div class="input-group-prepend">
-        <span class="input-group-text"  id="passwordInput">password</span>
-      </div> -->
-      <input type="password" class="form-control" formControlName="password" placeholder="password" aria-label="password" aria-describedby="passwordInput">
-    </div>
+<form class="form-inline w-50" [ngClass]="{'hidden': authenticated}" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="input-group form-group w-25">
+    <input type="text" class="form-control" formControlName="username" placeholder="username" aria-label="username"
+      aria-describedby="usernameInput" required>
+  </div>
 
-    <button [ngClass]="{'hidden': authenticated}" class="btn btn-success" type="submit">Login</button>
-    
-    <button [ngClass]="{'hidden': !authenticated}" class="btn btn-danger" type="button" (click)="onLogout()">Logout</button>
-  </form>
+  <div class="input-group form-group w-25">
+    <input type="password" class="form-control" formControlName="password" placeholder="password" aria-label="password"
+      aria-describedby="passwordInput" required>
+  </div>
+
+  <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid" >Login</button>
+  <button class="btn btn-info" type="button" routerLink="signup">Sign Up</button>
+</form>
+
+<form class="form-inline" [ngClass]="{'hidden': !authenticated}">
+  <div class="input-group form-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="logout">{{username}}</span>
+    </div>
+    <input class="btn btn-outline-danger" id="logout-btn" type="button" (click)="onLogout()" value="Logout"
+      aria-describedby="logout">
+  </div>
+</form>
