@@ -1,3 +1,43 @@
 <h1 class="lead text-center">Browse all Food Providers</h1>
-<div class="accordion shadow" id="supplierAccordion">
+<div id="supplierAccordion" class="accordion shadow mb-5">
+  <div *ngFor="let supplier of suppliers; let index = index">
+    <div class="card">
+      <div class="card-header" [attr.id]="'heading'+index">
+        <h2 class="mb-0">
+          <button class="btn btn-link" aria-expanded="false" type="button" data-toggle="collapse"
+            [attr.data-target]="'#collapse'+index" [attr.aria-controls]="'#collapse'+index">{{supplier.name}}
+
+          </button>
+        </h2>
+      </div>
+    </div>
+    <div class="collapse" [attr.id]="'collapse'+index" data-parent="#supplierAccordion"
+      [attr.aria-labelledby]="'heading'+index">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <app-offers [providerId]="supplier.id"></app-offers>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="font-weight-bold">Address & Contact</h3>
+                <p class="w-100">{{supplier.address}}</p>
+                <p class="w-100">{{supplier.email}}</p>
+                <p class="w-100">{{supplier.phoneNumber}}</p>
+                <a class="w-100" [href]="supplier.homepage">{{supplier.homepageUrl}}</a>
+              </div>
+              <div class="col-md-6">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2658.3433806980293!2d16.37475951570904!3d48.219262179230014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d07a5f088dddd%3A0x90f5f684d3ffb483!2sPizza%20Mari!5e0!3m2!1sen!2sat!4v1596627028611!5m2!1sen!2sat"
+                  width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                  tabindex="0"></iframe>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
