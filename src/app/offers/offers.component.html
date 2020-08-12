@@ -11,7 +11,7 @@
       <div *ngFor="let offer of offers; let index = index">
         <div *ngIf="offer.amountRemaining > 0; else elseBlock" class="row card-text">
           <div class="col-md-9">
-            <p>{{this.offers[index].amountRemaining}} out of {{this.offers[index].amountOffered}} Meals remain</p>
+            <p>{{this.offers[index].amountRemaining}} Meals remain</p>
           </div>
           <div class="col-md-3">
             <button class="btn btn-success btn-sm" [hidden]="!(this.loginService.isLoggedin())" (click)="claimOfferOnClick(offer.offer_id)">Order now</button>
