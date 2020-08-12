@@ -13,6 +13,8 @@ export class LoginComponent {
 
   submitted: boolean;
   authenticated: boolean;
+  isUser: boolean;
+
   username: string;
   inputIsEmpty: boolean;
 
@@ -25,6 +27,7 @@ export class LoginComponent {
       console.log("Not logged in")
     }
     this.authenticated = this.loginService.isLoggedin();
+    this.isUser = this.loginService.getIsUser();
 
    }
 
@@ -47,8 +50,15 @@ export class LoginComponent {
     .subscribe(data=>{
       console.log(data);
       if(data=="[user]"||data=="[provider]") this.authenticated = true;
+      if(data=="[user]") {
+        this.isUser = true;
+      } else if(data=="[provider]"){
+        this.isUser = false;
+      } 
+      
     });
     this.authenticated = this.loginService.authenticated;
+    this.isUser = this.loginService.isUser;
     this.username = username;
 
   }
@@ -56,6 +66,7 @@ export class LoginComponent {
   onLogout() {
     this.loginService.logout();
     this.authenticated = this.loginService.authenticate();
+    this.isUser = this.loginService.getIsUser();
   }
 
 }

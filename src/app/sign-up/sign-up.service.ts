@@ -15,6 +15,7 @@ export class SignUpService {
 
   userUrl = "http://localhost:8080/user";
   supplierUrl = "http://localhost:8080/provider";
+  public signedUp: boolean;
 
 
   constructor(private http: HttpClient) {

@@ -31,7 +31,8 @@ export class SupplierSignUpComponent implements OnInit {
                                                     this.form.get("homepage").value.toString(),
                                                     new Array(this.form.get("picture").value.toString())))
                          .subscribe(supplier => console.log(supplier));
-      
+        this.signUpService.signedUp = true;
+        
     }
   }
 

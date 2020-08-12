@@ -30,7 +30,7 @@ export class PlaceOfferComponent implements OnInit, DoCheck {
   ngDoCheck() {
     if(this.isVegan) {
       this.description = "vegan";
-      this.veganBtnValue = "vegan!";
+      this.veganBtnValue = "vegan \u{02713}";
     } else {
       this.description = "non-vegan";
       this.veganBtnValue = "vegan?";
@@ -53,6 +53,7 @@ export class PlaceOfferComponent implements OnInit, DoCheck {
       this.offerService.placeOffer(newOffer).subscribe(offer => console.log(offer));
       this.offerService.offerform.reset();
       this.submitted = false;
+      this.isVegan = false;
       this.showRedirect = true;
     }
   }

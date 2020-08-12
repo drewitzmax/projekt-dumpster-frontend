@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Router } from '@angular/router';
+import { SignUpService } from './sign-up.service';
 
 
 @Component({
@@ -10,11 +11,15 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
 
-
-  constructor() {
+  signedUp: boolean;
+  constructor(public signupService: SignUpService) {
   }
 
   ngOnInit(): void {
+  }
+
+  isSignedUp(): boolean {
+    return ((this.signupService.userform.valid && this.signupService.signedUp) == true);
   }
 
 

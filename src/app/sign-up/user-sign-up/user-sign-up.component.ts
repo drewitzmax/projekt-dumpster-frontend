@@ -31,6 +31,7 @@ export class UserSignUpComponent implements OnInit {
                                             this.form.get("password").value.toString(),
                                             this.form.get("email").value.toString()))
                           .subscribe(user => console.log(user));
+                          this.signUpService.signedUp = true;
       
     }
   }

@@ -14,6 +14,7 @@ export class LoginService {
   public username: string;
   
   public authenticated = this.isLoggedin();
+  public isUser = this.getIsUser();
  
 
   constructor(private http: HttpClient) { 
@@ -35,6 +36,7 @@ export class LoginService {
     let request =  this.http.get(this.url + "/login", { headers, responseType: 'text' as 'json' })
     .pipe(map(user => {
       if(user=="[user]"||user=="[provider]") this.authenticated = true;
+      if(user=="[user]") this.isUser = true;
 
       localStorage.setItem('currentUserRole', JSON.stringify(user));
       localStorage.setItem('currentUserName', username);
@@ -52,16 +54,23 @@ export class LoginService {
   }
 
   isLoggedin(): boolean {
+    
     return localStorage.getItem('currentUserRole') != null;
+  }
+  
+  getIsUser(): boolean {
+    return localStorage.getItem('currentUserRole') == '"[user]"';
   }
 
   authenticate() {
     console.log("authenticate "+this.currentUserValue)
     if(this.currentUserValue) {
       this.authenticated = true;
+      this.isUser = this.getIsUser();
       return true;
     } else {
       this.authenticated = false;
+      this.isUser = false;
       return false;
     }
 
