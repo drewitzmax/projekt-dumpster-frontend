@@ -20,7 +20,7 @@ export class OffersComponent implements OnInit {
   factoryResolver: ComponentFactoryResolver;
   rootViewContainer: ViewContainerRef;
 
-  constructor(private offersService: OffersService, private loginService: LoginService) {}
+  constructor(private offersService: OffersService, public loginService: LoginService) {}
 
   ngOnInit(): void {
     this.loadOffersByProvider();

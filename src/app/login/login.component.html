@@ -16,13 +16,12 @@
         </form>
         <button class="btn btn-danger" (click)="onLogout()">Logout</button>
 </div> -->
+
 <li class="dropdown order-1" [ngClass]="{'hidden': authenticated}">
-  <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
+  <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-success btn-lg p-2 px-sm-3 font-weight-light dropdown-toggle">Login <span class="caret"></span></button>
   <ul class="dropdown-menu dropdown-menu-right mt-2">
     <li class="px-3 py-2">
-
-      <form class="form-inline w-100 p-1" [formGroup]="loginForm"
-        (ngSubmit)="onSubmit()">
+      <form class="form-inline w-100 p-1" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="input-group form-group w-100 mt-1">
           <input type="text" class="form-control" formControlName="username" placeholder="username"
             aria-label="username" aria-describedby="usernameInput" required>
@@ -35,7 +34,6 @@
 
         <button class="btn btn-success mt-1 btn-sm" style="width:100%;" type="submit"
           [disabled]="!loginForm.valid">Login</button>
-        <button class="btn btn-info mt-1 btn-sm" style="width:100%;" type="button" routerLink="signup">Sign Up</button>
       </form>
     </li>
   </ul>
@@ -49,3 +47,5 @@
       aria-describedby="logout">
   </div>
 </form>
+
+
