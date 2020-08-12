@@ -1,4 +1,4 @@
-import {Header} from '../pageObjects/header.po';
+import {Header} from '../pageObjects/margins/header.po';
 import {Home} from '../pageObjects/home.po';
 import {browser} from 'protractor';
 

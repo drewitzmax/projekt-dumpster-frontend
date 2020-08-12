@@ -1,25 +1,23 @@
-import {browser, by, element, $, $$, ElementFinder, ElementArrayFinder} from 'protractor';
+import {$, browser, ElementFinder} from 'protractor';
 
 export class SignUp {
   dropDownButton: ElementFinder;
-  foodProviderInputs: ElementArrayFinder;
-  noFoodProviderInputs: ElementArrayFinder;
 
   constructor() {
-    this.dropDownButton = element(by.id('dropdownMenuButton'));
+    this.dropDownButton = $('#dropdownMenuButton');
   }
 
-  // tslint:disable:typedef
-  navigateTo() {
-    return browser.get('/signup');
+  async navigateTo(): Promise<void> {
+    await browser.get('/signup');
   }
 
-  async chooseFoodProvider() {
+  async chooseFoodProvider(): Promise<void> {
     await this.dropDownButton.click();
-    this.foodProviderInputs = $$('input');
+    await $('a[routerlink=supplier]').click();
   }
-  async chooseNoFoodProvider() {
+
+  async chooseNoFoodProvider(): Promise<void> {
     await this.dropDownButton.click();
-    this.noFoodProviderInputs = $$('input');
+    await $('a[routerlink=user]').click();
   }
 }

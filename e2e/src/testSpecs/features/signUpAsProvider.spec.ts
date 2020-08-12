@@ -1,4 +1,4 @@
-import {Header} from '../../pageObjects/header.po';
+import {Header} from '../../pageObjects/margins/header.po';
 import {$$, browser} from 'protractor';
 import {SignUp} from '../../pageObjects/signUp.po';
 
@@ -7,20 +7,14 @@ describe('signUp feature testspec', () => {
   const signUp = new SignUp();
 
   it('should navigate to signUp page', async () => {
-    await header.navigateTo();
+    await browser.get(browser.baseUrl);
+    await header.dropDownButton.click();
     await header.signUpButton.click();
     expect(await browser.getCurrentUrl()).toEqual('http://localhost:4200/signup');
   });
 
-  // fixing need
   it('should choose food supplier', async () => {
     await signUp.chooseFoodProvider();
-    expect(await browser.getCurrentUrl()).toEqual('http://localhost:4200/signup/suppliier');
-  });
-
-
-  it('should put data in the input fields', async () => {
-    signUp.foodProviderInputs.get(0).sendKeys('test');
-    signUp.foodProviderInputs.get(1).sendKeys('mustermann');
+    expect(await browser.getCurrentUrl()).toEqual('http://localhost:4200/signup/supplier');
   });
 });
