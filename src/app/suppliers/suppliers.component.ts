@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SuppliersService } from './suppliers.service';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-suppliers',
@@ -9,7 +10,13 @@ import { SuppliersService } from './suppliers.service';
 })
 export class SuppliersComponent implements OnInit {
 
-  constructor(private supService: SuppliersService) { }
+  constructor(private supService: SuppliersService, private loginService: LoginService) {
+    if (this.loginService.currentUserValue) { 
+      console.log(`Logged in as: ${localStorage.getItem('currentUserName')}`)
+    }else {
+      console.log("Not logged in")
+    }
+   }
 
   ngOnInit() {
   }

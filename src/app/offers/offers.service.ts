@@ -15,10 +15,17 @@ export class OffersService {
   claimUrl = "http://localhost:8080/offer/claim/";
   factoryResolver: any;
   rootViewContainer: any;
+  private userRole: string;
+  private username: string;
+  private password: string;
 
-
+  
+  
   constructor(private http: HttpClient, @Inject(ComponentFactoryResolver) factoryResolver) {
-    this.factoryResolver = factoryResolver
+    this.userRole = localStorage.getItem('currentUserRole');
+    this.username = localStorage.getItem('currentUserName');
+    this.password = localStorage.getItem('currentUserPassword');
+    this.factoryResolver = factoryResolver 
   }
 
   public getOffers() {
@@ -55,6 +62,16 @@ export class OffersService {
   }
 
 
+
+  placeOffer(offer: Offer): Observable<Offer> {
+    
+    let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
+    return this.http.post<Offer>(this.offerUrl, offer,{ headers, responseType: 'text' as 'json' })
+      .pipe(
+        catchError(this.handleError('addOffer', offer))
+      );
+
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
