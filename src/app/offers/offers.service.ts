@@ -18,9 +18,10 @@ export class OffersService {
 
 
   constructor(private http: HttpClient, @Inject(ComponentFactoryResolver) factoryResolver) {
-    this.factoryResolver = factoryResolver }
+    this.factoryResolver = factoryResolver
+  }
 
- public getOffers() {
+  public getOffers() {
     return this.http.get(this.offerUrl)
       .pipe(
         catchError(this.handleError('getOffers'))
@@ -33,11 +34,27 @@ export class OffersService {
     console.log("ININININ")
     console.log(offerId)
     console.log(claimUrlComp)
-    return this.http.post(claimUrlComp, {headers})
-      .pipe(
-        catchError(this.handleError('claimOffer'))
-      );
+    // return this.http.post(claimUrlComp, { headers })
+    //   .pipe(
+    //     catchError(this.handleError('claimOffer'))
+    //   );
+
+
+    var client = new XMLHttpRequest();
+    let data;
+    var request_data = JSON.stringify(data);
+    var endPoint = claimUrlComp
+    var cookie = "session=abc";
+    client.open("POST", endPoint, false);//This Post will become put 
+    client.setRequestHeader("Accept", "application/json");
+    client.setRequestHeader("Content-Type", "application/json");
+    client.withCredentials = true;
+    client.setRequestHeader("Set-Cookie", "session=abc");
+    client.setRequestHeader("Cookie", cookie);
+    client.send(request_data);
   }
+
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

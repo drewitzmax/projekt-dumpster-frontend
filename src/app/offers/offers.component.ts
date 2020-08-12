@@ -50,7 +50,7 @@ export class OffersComponent implements OnInit {
   }
 
   public claimOfferOnClick(offerId: Number){
-    this.offersService.claimOffer(offerId, new HttpHeaders({ Authorization: 'Basic ' + btoa("1" + ":" + "1") })).subscribe();
+    this.offersService.claimOffer(offerId, new HttpHeaders({ Authorization: 'Basic ' + btoa("1" + ":" + "1") }));
   }
 
 }
