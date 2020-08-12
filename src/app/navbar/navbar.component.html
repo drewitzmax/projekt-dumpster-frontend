@@ -14,7 +14,7 @@
     <ul class="nav navbar-nav flex-row ml-auto">
       <app-login></app-login>
       <li class="nav-item mr-1 order-sm-0" [hidden]="(this.loginService.isLoggedin())">
-        <button class="btn btn-outline-info btn-lg p-2 pr-3 font-weight-light" style="width:100%;" type="button" routerLink="signup">Sign Up</button>
+        <button class="btn btn-outline-info btn-lg p-2 pr-3 font-weight-light" style="width:100%;" type="button" routerLink="signup" onclick="this.blur();">Sign Up</button>
       </li>
     </ul>
   </div>
