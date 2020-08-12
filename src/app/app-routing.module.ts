@@ -7,6 +7,7 @@ import { UserSignUpComponent } from './sign-up/user-sign-up/user-sign-up.compone
 import { SupplierSignUpComponent } from './sign-up/supplier-sign-up/supplier-sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { PlaceOfferComponent } from './offers/place-offer/place-offer.component';
+import {ImpressumComponent} from './impressum/impressum.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'signup', component: SignUpComponent, children: [{path: 'user', component: UserSignUpComponent}, {path: 'supplier', component: SupplierSignUpComponent}]},
   {path: 'login', component: LoginComponent},
   {path: 'placeOffer', component: PlaceOfferComponent},
+  {path: 'impressum', component: ImpressumComponent},
 ];
 
 @NgModule({
