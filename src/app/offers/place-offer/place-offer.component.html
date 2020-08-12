@@ -1,1 +1,31 @@
-<button type="button" (click)="onSubmit()" >Place Offer</button>
+
+<div class="container">
+    <h2 class="text-center mt-3 mb-3">Create your account</h2>
+    <form class="row flex-wrap justify-content-around" [formGroup]="this.offerService.offerform" (ngSubmit)="onSubmit()">
+      <div class="row mb-5">
+        <input type="hidden" formControlName="$id">
+  
+        <div class="form-group col-6">
+          <label class="lead">Title</label>
+          <input formControlName="title" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.title.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.title?.errors?.required">Only letters and spaces</div>
+        </div>
+  
+        <div class="form-group col-6">
+          <label class="lead">amountOffered</label>
+          <input formControlName="amountOffered" class="form-control"
+            type="number"
+            [ngClass]="{'is-invalid':submitted && formControls.amountOffered.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.amountOffered.errors?.required">This field is required</div>
+        </div>
+  
+        <div class="form-group col-6 text-center my-auto">
+            <button type="button" (click)="onSubmit()" >Place Offer</button>
+
+        </div>
+      </div>
+    </form>
+  
+  </div>
+  

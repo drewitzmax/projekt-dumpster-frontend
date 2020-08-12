@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 import { User } from '../users/user.model';
 import { Observable, of } from 'rxjs';
 import { OffersComponent } from './offers.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,13 @@ export class OffersService {
     this.password = localStorage.getItem('currentUserPassword');
     this.factoryResolver = factoryResolver 
   }
+
+  offerform = new FormGroup({
+    $id: new FormControl(null),
+    title: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
+    description: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
+    amountOffered: new FormControl('', Validators.required)
+  });
 
  public getOffers() {
     return this.http.get(this.offerUrl)

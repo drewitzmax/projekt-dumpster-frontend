@@ -38,8 +38,8 @@ export class OffersComponent implements OnInit {
           }
         }
       }
-      let newOffer = new Offer(null, null, null,amountOfferedTotal.toString() ,
-        amountRemainingTotal.toString());
+      let newOffer = new Offer(null, null, null,amountOfferedTotal ,
+        amountRemainingTotal);
       this.offers.push(newOffer);
     });  
   }

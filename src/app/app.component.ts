@@ -13,9 +13,9 @@ export class AppComponent implements OnChanges, OnInit, DoCheck{
     this.authenticated = this.loginService.authenticated;
   }
   ngDoCheck(){
-    this.authenticated = this.loginService.authenticated;
+/*     this.authenticated = this.loginService.authenticated;
     console.log('appcomponent doCheck: authenticated : '+this.authenticated);
-    console.log('appcomponent loginservice doCheck: authenticated : '+this.loginService.authenticated);
+    console.log('appcomponent loginservice doCheck: authenticated : '+this.loginService.authenticated); */
   }
 
   ngOnInit() {
