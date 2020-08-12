@@ -5,6 +5,7 @@ export class Offer {
                 public amountOffered: Number,
                 public amountRemaining: Number){}
 
+
     
     getID(){ return this.offer_id }
     getTitle(){ return this.title }
