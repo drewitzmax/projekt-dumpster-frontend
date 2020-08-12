@@ -1,31 +1,59 @@
 
 <div class="container">
-    <h2 class="text-center mt-3 mb-3">Place an Offer</h2>
-    <form class="row flex-wrap justify-content-around" [formGroup]="this.offerService.offerform" (ngSubmit)="onSubmit()">
+    <div [ngClass]="{'hidden':this.showRedirect}">
+
+        <form class="row flex-wrap justify-content-around" [formGroup]="this.offerService.offerform" 
+        (ngSubmit)="onSubmit()">
+        <h2 class="text-center mt-3 mb-3">Place an Offer</h2>
       <div class="row mb-5">
-        <input type="hidden" formControlName="$id">
+          <input type="hidden" formControlName="$id">
   
-        <div class="form-group col-12">
-          <label class="lead">Title</label>
+        <div class="form-group mx-auto col-md-8 col-12">
+            <label class="lead">Title</label>
           <input formControlName="title" class="form-control"
             [ngClass]="{'is-invalid':submitted && formControls.title.errors}">
-          <div class="invalid-feedback" *ngIf="submitted && formControls.title?.errors?.required">This field is required</div>
+            <div class="invalid-feedback" *ngIf="submitted && formControls.title?.errors?.required">This field is required</div>
         </div>
-  
-        <div class="form-group col-12">
-          <label class="lead">How much do you have to spare?</label>
+        <div class="form-group mx-auto col-md-8 col-12">
+            
+            <button type="button" (click)="toggleVegan()"
+            [ngClass]="(this.isVegan)?'btn btn-success':'btn btn-outline-success'">{{this.veganBtnValue}}</button>
+        </div>
+        
+        <!-- <div class="form-group col-12">
+            <label class="lead">description</label>
+            <input formControlName="description" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.description.errors}">
+            <div class="invalid-feedback" *ngIf="submitted && formControls.description?.errors?.required">This field is required</div>
+        </div> -->
+        
+        <div class="form-group mx-auto col-md-8 col-12">
+            <label class="lead">How much do you have to spare?</label>
           <input formControlName="amountOffered" class="form-control"
-            type="number" 
-            [ngClass]="{'is-invalid':submitted && formControls.amountOffered.errors}">
+          type="number" 
+          [ngClass]="{'is-invalid':submitted && formControls.amountOffered.errors}">
           <div class="invalid-feedback" *ngIf="submitted && formControls.amountOffered.errors?.required">This field is required</div>
         </div>
-  
+        
         <div class="form-group col-12 text-center my-auto">
             <button class="btn btn-outline-primary" type="button" (click)="onSubmit()" >Place Offer</button>
-
+            
         </div>
-      </div>
+    </div>
     </form>
-  
-  </div>
+</div>
+    
+    <div [ngClass]="{'hidden':!this.showRedirect}">
+        <h2 class="text-center mt-3 mb-3">Thank you!</h2>
+        <h2 class="text-center mt-3 mb-3">Would you like to place another offer?</h2>
+        <div class="col-xs-8 col-sm-6 col-md-4 mx-auto">
+            <div class="row flex-wrap justify-content-between">
+
+                <button class="btn btn-outline-primary" (click)="this.showRedirect=false" >Yes Please</button>
+                <button class="btn btn-outline-danger" routerLink="/">No Thanks</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
   
