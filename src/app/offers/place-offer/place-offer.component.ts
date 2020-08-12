@@ -15,7 +15,7 @@ export class PlaceOfferComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-    this.offerService.placeOffer(new Offer(null,"testoffer","testdescription",4,5))
+    this.offerService.placeOffer(new Offer(null,"testoffer","testdescription",'4','5'))
                                   .subscribe(offer => console.log(offer));
   }
 
