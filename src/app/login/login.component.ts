@@ -24,7 +24,7 @@ export class LoginComponent {
     } else {
       console.log("Not logged in")
     }
-    this.authenticated = this.loginService.authenticate();
+    this.authenticated = this.loginService.isLoggedin();
 
    }
 
@@ -48,6 +48,7 @@ export class LoginComponent {
       console.log(data);
       if(data=="[user]"||data=="[provider]") this.authenticated = true;
     });
+    this.authenticated = this.loginService.authenticated;
     this.username = username;
 
   }

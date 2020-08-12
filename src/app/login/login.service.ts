@@ -1,7 +1,7 @@
 import { Injectable, DoCheck, OnChanges } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { catchError, retry, map, timeout } from 'rxjs/operators';
-import { throwError, BehaviorSubject, Observable } from 'rxjs';
+import { throwError, BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +13,14 @@ export class LoginService {
   public currentUser: Observable<any>;
   public username: string;
   
-  public authenticated: boolean;
+  public authenticated = this.isLoggedin();
  
 
   constructor(private http: HttpClient) { 
     this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('currentUserRole'));
     this.currentUser = this.currentUserSubject.asObservable();
 
-    this.authenticate();
+    //this.authenticate();
   }
 
   public get currentUserValue() {
@@ -34,18 +34,25 @@ export class LoginService {
     this.username = username;
     let request =  this.http.get(this.url + "/login", { headers, responseType: 'text' as 'json' })
     .pipe(map(user => {
-      
+      if(user=="[user]"||user=="[provider]") this.authenticated = true;
+
       localStorage.setItem('currentUserRole', JSON.stringify(user));
       localStorage.setItem('currentUserName', username);
+      localStorage.setItem('currentUserPassword', password);
+      localStorage.setItem('loggedIn', "true");
       
       this.currentUserSubject.next(user);
       console.log(JSON.stringify(user)+" "+typeof JSON.stringify(user));
       return user;
     
-    }),catchError(this.handleError));
+    }),catchError(this.handleError('login')));
     this.authenticate();
     return request;
 
+  }
+
+  isLoggedin(): boolean {
+    return localStorage.getItem('currentUserRole') != null;
   }
 
   authenticate() {
@@ -63,21 +70,17 @@ export class LoginService {
   logout() {
     localStorage.removeItem('currentUserRole');
     localStorage.removeItem('currentUserName');
+    localStorage.removeItem('currentUserPassword');
+    localStorage.removeItem('loggedIn');
     this.currentUserSubject.next(null);
     this.authenticated = false;
   }
 
-  private handleError(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 
 

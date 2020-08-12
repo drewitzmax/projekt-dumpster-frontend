@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { HeaderComponent } from './header/header.component';
 import { OffersComponent } from './offers/offers.component';
+import { PlaceOfferComponent } from './offers/place-offer/place-offer.component';
 
 
 
@@ -39,6 +40,7 @@ import { OffersComponent } from './offers/offers.component';
     LoginComponent,
     HeaderComponent,
     OffersComponent,
+    PlaceOfferComponent,
   ],
   imports: [
     BrowserModule,
