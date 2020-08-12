@@ -25,7 +25,7 @@
                 <p class="w-100">{{supplier.address}}</p>
                 <p class="w-100">{{supplier.email}}</p>
                 <p class="w-100">{{supplier.phoneNumber}}</p>
-                <a class="w-100" [href]="supplier.homepageUrl">{{supplier.homepageUrl}}</a>
+                <a class="w-100" [href]="'http://' + supplier.homepageUrl">{{supplier.homepageUrl}}</a>
               </div>
               <div class="col-md-6">
                 <iframe
