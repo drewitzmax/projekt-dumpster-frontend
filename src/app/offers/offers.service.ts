@@ -28,8 +28,7 @@ export class OffersService {
 
   offerform = new FormGroup({
     $id: new FormControl(null),
-    title: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
-    description: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
+    title: new FormControl('', Validators.required),
     amountOffered: new FormControl('', Validators.required)
   });
 
