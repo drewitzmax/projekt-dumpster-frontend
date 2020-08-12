@@ -7,7 +7,7 @@ describe('Header TestSpec', () => {
   const header = new Header();
 
   beforeEach(async () => {
-    await header.navigateTo();
+    await browser.get(browser.baseUrl);
   });
 
   it('should have the correct headerimage', async () => {
