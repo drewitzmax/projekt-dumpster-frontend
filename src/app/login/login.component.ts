@@ -56,7 +56,12 @@ export class LoginComponent {
         this.isUser = false;
       } 
       
-    });
+    },error=> {
+      let errorMessage = error.error;
+      if(error.status==401) errorMessage = "invalid userename/email \nor password";
+      window.alert(errorMessage);
+    }
+    );
     this.authenticated = this.loginService.authenticated;
     this.isUser = this.loginService.isUser;
     this.username = username;

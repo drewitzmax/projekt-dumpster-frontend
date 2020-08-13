@@ -23,6 +23,7 @@
           <input formControlName="email" class="form-control"
             [ngClass]="{'is-invalid':submitted && formControls.email.errors}">
           <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors?.email">This field must be an email</div>
+          <div class="invalid-feedback" *ngIf="submitted && this.signUpService.invalidMail">This field must be an email</div>
           <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors?.required">This field is required</div>
         </div>
 
