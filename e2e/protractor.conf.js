@@ -14,7 +14,7 @@ exports.config = {
   SELENIUM_PROMISE_MANAGER: false,
   allScriptsTimeout: 11000,
   specs: [
-    './src/**/*.e2e-spec.ts'
+    './src/testSpecs/pages/*.spec.ts'
   ],
 
   capabilities: {
@@ -49,7 +49,7 @@ exports.config = {
         savePath: '../e2e/reporter/reports - ' + browsername,
         screenshotsFolder: '../e2e/reporter/images - ' + browsername,
         takeScreenshots: false,
-        takeScreenshotsOnlyOnFailures: false
+        takeScreenshotsOnlyOnFailures: true,
       }));
 
       // Add SpecReporter for console output
