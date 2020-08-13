@@ -94,7 +94,7 @@ export class OffersService {
     this.updateCredidentals();
     const offerUrlComp = this.deleteOrderByIdUrl + offerId.toString();
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
-    return this.http.patch(offerUrlComp, {headers})
+    return this.http.patch(offerUrlComp, {}, {headers})
       .pipe(
         catchError(this.handleError('deleteOrder'))
       );
