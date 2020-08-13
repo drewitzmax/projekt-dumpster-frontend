@@ -44,6 +44,7 @@ export class OffersService {
   }
 
   public getOffersBySupplier() {
+    this.updateCredidentals();
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.get(this.offersBySupplierUrl, { headers})
       .pipe(
@@ -52,6 +53,7 @@ export class OffersService {
   }
 
   public getOffersByUser() {
+    this.updateCredidentals();
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.get(this.ordersByUserUrl, { headers})
       .pipe(
@@ -61,6 +63,7 @@ export class OffersService {
 
   public claimOffer(offerId: Number) {
     const claimUrlComp = this.claimUrl + offerId.toString();
+    this.updateCredidentals();
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.post(claimUrlComp, null, { headers, responseType: 'text' as 'json' })
       .pipe(
@@ -69,6 +72,7 @@ export class OffersService {
   }
 
   public placeOffer(offer: Offer): Observable<Offer> {
+    this.updateCredidentals();
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.post<Offer>(this.offerUrl, offer, { headers })
       .pipe(
@@ -77,6 +81,7 @@ export class OffersService {
   }
 
   public deleteOffer(offerId: Number): Observable<{}> {
+    this.updateCredidentals();
     const offerUrlComp = this.offerUrl + "/" + offerId.toString();
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.delete(offerUrlComp, {headers})
@@ -86,6 +91,7 @@ export class OffersService {
   }
 
   public deleteOrder(offerId: Number): Observable<{}> {
+    this.updateCredidentals();
     const offerUrlComp = this.deleteOrderByIdUrl + offerId.toString();
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.patch(offerUrlComp, {headers})
@@ -94,6 +100,11 @@ export class OffersService {
       );
   }
 
+  private updateCredidentals(){
+    this.userRole = localStorage.getItem('currentUserRole');
+    this.username = localStorage.getItem('currentUserName');
+    this.password = localStorage.getItem('currentUserPassword');
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

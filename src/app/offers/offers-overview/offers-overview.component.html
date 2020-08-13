@@ -18,7 +18,7 @@
               </div>
               <div *ngIf="isUser; else elseBlockDelete">
                 <button class="btn btn-danger btn-sm ml-auto" (click)="deleteOrderOnClick(offer.offer_id)">
-                  Delete Offer
+                  Delete Order
                 </button>
               </div>
               <ng-template #elseBlockDelete>
@@ -26,7 +26,6 @@
                   Delete Offer
                 </button>
               </ng-template>
-  
             </li>
           </div>
         </div>
