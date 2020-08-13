@@ -96,8 +96,7 @@ export class OffersService {
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.patch(offerUrlComp, {}, {headers})
       .pipe(
-        catchError(this.handleError))
-      );
+        catchError(this.handleError));
   }
 
   private updateCredentials(){
