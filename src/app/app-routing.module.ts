@@ -8,14 +8,16 @@ import { SupplierSignUpComponent } from './sign-up/supplier-sign-up/supplier-sig
 import { LoginComponent } from './login/login.component';
 import { PlaceOfferComponent } from './offers/place-offer/place-offer.component';
 import {ImpressumComponent} from './impressum/impressum.component';
+import {NotLoggedInGuardGuard} from './guards/not-logged-in-guard.guard';
+import {IsProviderGuard} from './guards/is-provider.guard';
 
 
 const routes: Routes = [
   {path: '', component: SuppliersComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'signup', component: SignUpComponent, children: [{path: 'user', component: UserSignUpComponent}, {path: 'supplier', component: SupplierSignUpComponent}]},
+  {path: 'signup', component: SignUpComponent, canActivate: [NotLoggedInGuardGuard], children: [{path: 'user', component: UserSignUpComponent}, {path: 'supplier', component: SupplierSignUpComponent}]},
   {path: 'login', component: LoginComponent},
-  {path: 'placeOffer', component: PlaceOfferComponent},
+  {path: 'placeOffer', canActivate: [IsProviderGuard], component: PlaceOfferComponent},
   {path: 'impressum', component: ImpressumComponent},
 ];
 
