@@ -23,8 +23,9 @@
   opacity: 0.8;
 }
 
-.footer-basic ul a:hover {
-  opacity: 1;
+.footer-basic>footer>ul>li:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .footer-basic .social {
