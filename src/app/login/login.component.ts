@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from './login.service';
 import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent {
   username: string;
   inputIsEmpty: boolean;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
     if (this.loginService.currentUserValue) { 
       console.log(`Logged in as: ${localStorage.getItem('currentUserName')}`)
       this.username = localStorage.getItem('currentUserName');
@@ -65,7 +66,6 @@ export class LoginComponent {
     this.authenticated = this.loginService.authenticated;
     this.isUser = this.loginService.isUser;
     this.username = username;
-
   }
 
   onLogout() {

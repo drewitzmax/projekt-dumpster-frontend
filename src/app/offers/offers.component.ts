@@ -17,8 +17,6 @@ export class OffersComponent implements OnInit {
   offersData: any;
   offersProviderData: any;
   offers: Offer[] = [];
-  factoryResolver: ComponentFactoryResolver;
-  rootViewContainer: ViewContainerRef;
 
   constructor(private offersService: OffersService, public loginService: LoginService) {}
 
@@ -54,7 +52,7 @@ export class OffersComponent implements OnInit {
       this.offers = [];
       this.ngOnInit();
     });
-    
   }
+
 
 }

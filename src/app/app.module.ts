@@ -24,6 +24,8 @@ import { OffersComponent } from './offers/offers.component';
 import { PlaceOfferComponent } from './offers/place-offer/place-offer.component';
 import {FooterComponent} from './footer/footer.component';
 import {ImpressumComponent} from './impressum/impressum.component';
+import { AccountOverviewComponent } from './account-overview/account-overview.component';
+import { OffersOverviewComponent } from './offers/offers-overview/offers-overview.component';
 
 
 
@@ -45,6 +47,8 @@ import {ImpressumComponent} from './impressum/impressum.component';
         PlaceOfferComponent,
         FooterComponent,
         ImpressumComponent,
+        AccountOverviewComponent,
+        OffersOverviewComponent,
     ],
   imports: [
     BrowserModule,

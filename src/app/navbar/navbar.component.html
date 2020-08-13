@@ -11,9 +11,11 @@
         <a class="nav-link" routerLink="about">About</a>
       </li>
       <li class="nav-item lead ml-2">
-        <a class="nav-link" routerLink="placeOffer" [hidden]="(!this.loginService.isLoggedin()||this.loginService.isUser)">Place Offer</a>
+        <a class="nav-link" routerLink="place_offer" [hidden]="(!this.loginService.isLoggedin()||this.loginService.isUser)">Place Offer</a>
       </li>
-
+      <li class="nav-item lead ml-2">
+        <a class="nav-link" routerLink="offer_overview" [hidden]="!(this.loginService.isLoggedin())">Offers</a>
+      </li>
     </ul>
     <ul class="nav navbar-nav flex-row ml-auto">
       <app-login></app-login>
