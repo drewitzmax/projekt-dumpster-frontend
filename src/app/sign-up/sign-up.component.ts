@@ -18,6 +18,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   isSignedUp(): boolean {
     return ((this.signupService.userform.valid && this.signupService.signedUp) == true);
   }

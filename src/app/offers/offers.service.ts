@@ -114,7 +114,7 @@ export class OffersService {
       } else {
         console.log(`error status : ${error.status} ${error.statusText}`);
         if (error.status == 201) successMessage = "SUCCESS";
-        if (error.status > 400){
+        if (error.status >= 400){
           errorMessage = error.error;
           window.alert(errorMessage);
         } 
