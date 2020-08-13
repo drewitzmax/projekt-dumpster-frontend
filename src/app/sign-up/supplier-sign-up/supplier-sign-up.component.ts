@@ -15,12 +15,16 @@ export class SupplierSignUpComponent implements OnInit {
   form = this.signUpService.supplierform;
   formControls = this.signUpService.supplierform.controls;
   showSuccessMessage: boolean;
+  errorMessage: string;
+  invalidMail: boolean;
+  invalidUsername: boolean;
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     this.submitted = true;
+    this.errorMessage = '';
     if (this.form.valid) {
         this.signUpService.addSupplier(new Supplier(null,
                                                     this.form.get("companyName").value.toString(), 
@@ -30,8 +34,13 @@ export class SupplierSignUpComponent implements OnInit {
                                                     this.form.get("password").value.toString(),
                                                     this.form.get("homepage").value.toString(),
                                                     new Array(this.form.get("picture").value.toString())))
-                         .subscribe(supplier => console.log(supplier));
-        this.signUpService.signedUp = true;
+                         .subscribe(supplier => console.log(supplier),
+                                    error => {
+                                              this.errorMessage = error.error.toString();
+                                              if(this.errorMessage=='Email already in Use!') this.signUpService.invalidMail = true;
+                                              if(error.status==201) this.signUpService.signedUp = true;
+            });
+        
         
     }
   }

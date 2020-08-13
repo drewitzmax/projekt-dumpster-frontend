@@ -1,9 +1,9 @@
 import { Injectable, Inject, ComponentFactoryResolver } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Offer } from './offer.model';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { User } from '../users/user.model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { OffersComponent } from './offers.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -35,7 +35,7 @@ export class OffersService {
  public getOffers() {
     return this.http.get(this.offerUrl)
       .pipe(
-        catchError(this.handleError('getOffers'))
+        catchError(this.handleError)
       );
 
   }
@@ -45,7 +45,7 @@ export class OffersService {
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.post(claimUrlComp, null, { headers, responseType: 'text' as 'json' })
       .pipe(
-        catchError(this.handleError('claimOffer'))
+        catchError(this.handleError)
       );
   }
 
@@ -53,15 +53,31 @@ export class OffersService {
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.post<Offer>(this.offerUrl, offer, { headers })
       .pipe(
-        catchError(this.handleError('addOffer', offer))
+        catchError(this.handleError)
       );
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
-  }
+  public handleError(error) {
+    let errorMessage = '';
+    let successMessage = '';
+    if (error instanceof HttpErrorResponse) {
+      if (error.error instanceof ErrorEvent) {
+        console.error("Error Event");
+      } else {
+        console.log(`error status : ${error.status} ${error.statusText}`);
+        if (error.status == 201) successMessage = "SUCCESS";
+        if (error.status > 400){
+          errorMessage = error.error;
+          window.alert(errorMessage);
+        } 
+
+      }
+    } else {
+      console.error("something went wrong");
+    }
+
+    return throwError(error);
+
+  } 
 
 }

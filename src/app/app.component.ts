@@ -18,11 +18,6 @@ export class AppComponent implements OnChanges, OnInit, DoCheck{
     this.authenticated = this.loginService.authenticated;
     this.isUser = this.loginService.isUser;
 
-    console.log( "ass"+" "+(localStorage.getItem('currentUserRole') === '"[user]"'))
-
-    console.log(this.loginService.isUser)
-    console.log('appcomponent doCheck: authenticated : '+this.authenticated);
-    console.log('appcomponent loginservice doCheck: authenticated : '+this.loginService.authenticated);
   }
 
   ngOnInit() {

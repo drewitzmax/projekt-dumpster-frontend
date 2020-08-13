@@ -16,6 +16,8 @@ export class SignUpService {
   userUrl = "http://localhost:8080/user";
   supplierUrl = "http://localhost:8080/provider";
   public signedUp: boolean;
+  public invalidMail: boolean;
+  public invalidUsername: boolean;
 
 
   constructor(private http: HttpClient) {
@@ -44,24 +46,38 @@ export class SignUpService {
 
   addUser(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user)
-      .pipe(
-        catchError(this.handleError('addUser', user))
-      );
+    .pipe(catchError(this.handleError))
 
   }
 
   addSupplier(supplier: Supplier): Observable<Supplier> {
     return this.http.post<Supplier>(this.supplierUrl, supplier)
-      .pipe(
-        catchError(this.handleError('addSupplier', supplier))
-      );
+    .pipe(catchError(this.handleError))
+
 
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
+  public handleError(error) {
+    let errorMessage = '';
+    let successMessage = '';
+    if (error instanceof HttpErrorResponse) {
+      if (error.error instanceof ErrorEvent) {
+        console.error("Error Event");
+      } else {
+        console.log(`error status : ${error.status} ${error.statusText}`);
+        if (error.status == 201) successMessage = "SUCCESS";
+        if (error.status > 400){
+          errorMessage = error.error;
+          window.alert(errorMessage);
+        } 
+      }
+    } else {
+      console.error("something went wrong");
+    }
+
+    return throwError(error);
+
   }
+     
 }
+

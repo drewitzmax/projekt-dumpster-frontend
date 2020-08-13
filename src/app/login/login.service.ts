@@ -1,5 +1,5 @@
 import { Injectable, DoCheck, OnChanges } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, retry, map, timeout } from 'rxjs/operators';
 import { throwError, BehaviorSubject, Observable, of } from 'rxjs';
 import {Router} from "@angular/router";
@@ -47,8 +47,8 @@ export class LoginService {
       this.currentUserSubject.next(user);
       console.log(JSON.stringify(user)+" "+typeof JSON.stringify(user));
       return user;
-
-    }),catchError(this.handleError('login')));
+    
+    }),catchError(this.handleError));
     this.authenticate();
     return request;
 
@@ -89,12 +89,33 @@ export class LoginService {
     this.router.navigateByUrl('/');
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
-  }
+  private handleError(error) {
+    if (error instanceof HttpErrorResponse) {
+      if (error.error instanceof ErrorEvent) {
+        console.error("Error Event");
+      } else {
+        console.log(`error status : ${error.status} ${error.statusText}`);
+        switch (error.status) {
+          case 201:    
+            console.log(error.error.text)
+            break;
+          case 401:    
+            console.log(error.error)
+            break;
+          case 403:
+            console.log("403")
+            break;
+          case 409:
+            console.log(error.error);
+            break;
+        }
+      }
+    } else {
+      console.error("something else happened");
+    }
+    return throwError(error);
+
+  } 
 
 
 }
