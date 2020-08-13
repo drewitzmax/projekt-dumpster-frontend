@@ -8,6 +8,8 @@ import { SupplierSignUpComponent } from './sign-up/supplier-sign-up/supplier-sig
 import { LoginComponent } from './login/login.component';
 import { PlaceOfferComponent } from './offers/place-offer/place-offer.component';
 import {ImpressumComponent} from './impressum/impressum.component';
+import { AccountOverviewComponent } from './account-overview/account-overview.component';
+import { OffersOverviewComponent } from './offers/offers-overview/offers-overview.component';
 
 
 const routes: Routes = [
@@ -15,8 +17,9 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'signup', component: SignUpComponent, children: [{path: 'user', component: UserSignUpComponent}, {path: 'supplier', component: SupplierSignUpComponent}]},
   {path: 'login', component: LoginComponent},
-  {path: 'placeOffer', component: PlaceOfferComponent},
+  {path: 'place_offer', component: PlaceOfferComponent},
   {path: 'impressum', component: ImpressumComponent},
+  {path: "offer_overview", component: OffersOverviewComponent},
 ];
 
 @NgModule({

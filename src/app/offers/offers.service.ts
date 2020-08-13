@@ -13,6 +13,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class OffersService {
 
   offerUrl = "http://localhost:8080/offer";
+  deleteOrderByIdUrl = "http://localhost:8080/offer/cancel/";
+  offersBySupplierUrl = "http://localhost:8080/offer/offerlist"
+  ordersByUserUrl = "http://localhost:8080/offer/orderlist"
   claimUrl = "http://localhost:8080/offer/claim/";
   private userRole: string;
   private username: string;
@@ -40,6 +43,22 @@ export class OffersService {
 
   }
 
+  public getOffersBySupplier() {
+    let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
+    return this.http.get(this.offersBySupplierUrl, { headers})
+      .pipe(
+        catchError(this.handleError('getOffersBySupplier'))
+      );
+  }
+
+  public getOffersByUser() {
+    let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
+    return this.http.get(this.ordersByUserUrl, { headers})
+      .pipe(
+        catchError(this.handleError('getOffersByUser'))
+      );
+  }
+
   public claimOffer(offerId: Number) {
     const claimUrlComp = this.claimUrl + offerId.toString();
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
@@ -49,13 +68,32 @@ export class OffersService {
       );
   }
 
-  placeOffer(offer: Offer): Observable<Offer> {
+  public placeOffer(offer: Offer): Observable<Offer> {
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
     return this.http.post<Offer>(this.offerUrl, offer, { headers })
       .pipe(
         catchError(this.handleError('addOffer', offer))
       );
   }
+
+  public deleteOffer(offerId: Number): Observable<{}> {
+    const offerUrlComp = this.offerUrl + "/" + offerId.toString();
+    let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
+    return this.http.delete(offerUrlComp, {headers})
+      .pipe(
+        catchError(this.handleError('deleteOffer'))
+      );
+  }
+
+  public deleteOrder(offerId: Number): Observable<{}> {
+    const offerUrlComp = this.deleteOrderByIdUrl + offerId.toString();
+    let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
+    return this.http.patch(offerUrlComp, {headers})
+      .pipe(
+        catchError(this.handleError('deleteOrder'))
+      );
+  }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

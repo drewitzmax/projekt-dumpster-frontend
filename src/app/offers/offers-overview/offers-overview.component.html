@@ -1,0 +1,35 @@
+<div class="container shadow py-3 mb-2">
+    <h2 class="text-center mt-3 mb-3">
+      <div *ngIf="isUser; else elseBlockHeader">Order Overview</div>
+      <ng-template #elseBlockHeader>Offer Overview</ng-template>
+    </h2>
+    <ul class="list-group">
+      <div *ngFor="let offer of offers; let index = index">
+        <div class="row card-text">
+          <div class="col-md-12">
+            <li class="list-group-item d-flex justify-content-between">
+              <div class="pt-2">
+                <div *ngIf="isUser; else elseBlock">Order #{{index+1}}</div>
+                <ng-template #elseBlock>Offer #{{index+1}}</ng-template>
+              </div>
+              <div class="ml-2 pt-2">
+                {{this.offers[index].amountRemaining}} out of {{this.offers[index].amountOffered}}
+                Meals remaining
+              </div>
+              <div *ngIf="isUser; else elseBlockDelete">
+                <button class="btn btn-danger btn-sm ml-auto" (click)="deleteOrderOnClick(offer.offer_id)">
+                  Delete Offer
+                </button>
+              </div>
+              <ng-template #elseBlockDelete>
+                <button id="" class="btn btn-danger btn-sm ml-auto" (click)="deleteOfferOnClick(offer.offer_id)">
+                  Delete Offer
+                </button>
+              </ng-template>
+  
+            </li>
+          </div>
+        </div>
+      </div>
+    </ul>
+  </div>
