@@ -16,7 +16,7 @@ export class SignUp {
     await $('a[routerlink=supplier]').click();
   }
 
-  async chooseNoFoodProvider(): Promise<void> {
+  async chooseUser(): Promise<void> {
     await this.dropDownButton.click();
     await $('a[routerlink=user]').click();
   }

@@ -8,14 +8,16 @@ export class SignUpFoodProvider {
   phone: ElementFinder;
   homepage: ElementFinder;
   picture: ElementFinder;
+  signUp: ElementFinder;
 
   constructor() {
     this.name = $('input[formcontrolname=companyName]');
     this.address = $('input[formcontrolname=address]');
     this.email = $('input[formcontrolname=email]');
-    this.password = $('input[formcontrolname=password]');
+    this.password = $('#supplier-password');
     this.phone = $('input[formcontrolname=phonenumber]');
     this.homepage = $('input[formcontrolname=homepage]');
     this.picture = $('input[formcontrolname=picture]');
+    this.signUp = $('input[value=SignUp]');
   }
 }

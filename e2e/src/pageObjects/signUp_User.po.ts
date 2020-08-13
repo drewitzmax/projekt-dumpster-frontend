@@ -6,12 +6,14 @@ export class SignUpUser {
   email: ElementFinder;
   username: ElementFinder;
   password: ElementFinder;
+  signUp: ElementFinder;
 
   constructor() {
     this.firstname = $('input[formcontrolname=firstName]');
     this.lastname = $('input[formcontrolname=lastName]');
     this.email = $('input[formcontrolname=email]');
-    this.username = $('input[formcontrolname=username]');
-    this.password = $('input[formcontrolname=password]');
+    this.username = $('#user-username');
+    this.password = $('#user-password');
+    this.signUp = $('input[value=SignUp]');
   }
 }
