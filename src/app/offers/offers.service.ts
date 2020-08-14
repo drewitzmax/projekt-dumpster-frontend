@@ -83,8 +83,8 @@ export class OffersService {
   public deleteOffer(offerId: Number): Observable<{}> {
     this.updateCredentials();
     const offerUrlComp = this.offerUrl + "/" + offerId.toString();
-    let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
-    return this.http.delete(offerUrlComp, {headers})
+    let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password)});
+    return this.http.delete(offerUrlComp, {headers, responseType: "text"})
       .pipe(
         catchError(this.handleError)
       );
@@ -93,8 +93,8 @@ export class OffersService {
   public deleteOrder(offerId: Number): Observable<{}> {
     this.updateCredentials();
     const offerUrlComp = this.deleteOrderByIdUrl + offerId.toString();
-    let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
-    return this.http.patch(offerUrlComp, {}, {headers})
+    let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password)});
+    return this.http.patch(offerUrlComp, {}, {headers, responseType: "text"})
       .pipe(
         catchError(this.handleError));
   }
@@ -117,7 +117,7 @@ export class OffersService {
         if (error.status >= 400){
           errorMessage = error.error;
           window.alert(errorMessage);
-        } 
+        }
 
       }
     } else {
@@ -126,6 +126,6 @@ export class OffersService {
 
     return throwError(error);
 
-  } 
+  }
 
 }
