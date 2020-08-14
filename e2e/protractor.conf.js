@@ -21,12 +21,9 @@ exports.config = {
     signup: ['./src/testSpecs/features/SignUp/*.spec.ts'],
   },
 
-  multiCapabilities: [
-    {browserName: 'chrome'},
-    {browserName: 'firefox'}
-  ],
-
-  maxSessions: 2,
+  capabilities: {
+    'browserName': 'firefox'
+  },
 
 
   directConnect: true,
