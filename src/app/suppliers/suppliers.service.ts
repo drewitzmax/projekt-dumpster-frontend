@@ -21,7 +21,7 @@ export class SuppliersService{
 
     constructor(private http: HttpClient) {
         this.http.get(this.url + "/provider").toPromise().then(
-          data => {console.log(data);
+          data => {
           
           for( let item in data) {
             if(data.hasOwnProperty(item)){
@@ -29,9 +29,7 @@ export class SuppliersService{
                 let newSupplier = new Supplier(prov.id, prov.name, prov.address, prov.phoneNumber,
                     prov.email, prov.password, prov.homepageUrl, prov.photos);
                 
-                this.suppliers.push(newSupplier);
-              
-                console.log(newSupplier.address)
+                this.suppliers.push(newSupplier);              
             }
           }
         })
