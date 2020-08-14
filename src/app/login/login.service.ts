@@ -16,6 +16,7 @@ export class LoginService {
 
   public authenticated = this.isLoggedin();
   public isUser = this.getIsUser();
+  public offerOverviewNav: string = this.isUser ? 'My Orders' : 'My Offers';
 
 
   constructor(private http: HttpClient, private router: Router) {
@@ -38,12 +39,12 @@ export class LoginService {
     .pipe(map(user => {
       if(user=="[user]"||user=="[provider]") this.authenticated = true;
       if(user=="[user]") this.isUser = true;
+      this.offerOverviewNav = this.isUser ? 'My Orders' : 'My Offers';
 
       localStorage.setItem('currentUserRole', JSON.stringify(user));
       localStorage.setItem('currentUserName', username);
       localStorage.setItem('currentUserPassword', password);
       localStorage.setItem('loggedIn', "true");
-
       this.currentUserSubject.next(user);
       console.log(JSON.stringify(user)+" "+typeof JSON.stringify(user));
       return user;

@@ -23,4 +23,9 @@ describe('Foodprovider login - TestSpec', () => {
   it('Foodprovider should not be able to login with blank fields', async () => {
     await header.login('', '');
   });
+
+  afterAll(async () => {
+    browser.executeScript('window.sessionStorage.clear();');
+    browser.executeScript('window.localStorage.clear();');
+  });
 });

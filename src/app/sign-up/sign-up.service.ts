@@ -50,6 +50,10 @@ export class SignUpService {
 
   }
 
+  onSignOut() {
+    this.signedUp=false;
+  }
+
   addSupplier(supplier: Supplier): Observable<Supplier> {
     return this.http.post<Supplier>(this.supplierUrl, supplier)
     .pipe(catchError(this.handleError))
@@ -66,7 +70,7 @@ export class SignUpService {
       } else {
         console.log(`error status : ${error.status} ${error.statusText}`);
         if (error.status == 201) successMessage = "SUCCESS";
-        if (error.status > 400){
+        if (error.status >= 400){
           errorMessage = error.error;
           window.alert(errorMessage);
         } 
