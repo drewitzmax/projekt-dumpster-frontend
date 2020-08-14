@@ -14,7 +14,7 @@ export class OffersOverviewComponent implements OnInit {
   isUser: Boolean;
   elseBlock: any;
   elseBlockDelete: any;
-
+  isLoading: boolean;
 
   constructor(public offersService: OffersService, public loginService: LoginService) { }
 
