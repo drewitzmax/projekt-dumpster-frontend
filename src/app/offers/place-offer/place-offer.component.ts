@@ -18,7 +18,7 @@ export class PlaceOfferComponent implements OnInit, DoCheck {
   
   showRedirect = false;
 
-  description: string;
+  describtion: string;
   veganBtnValue: string;
 
   constructor(public offerService: OffersService) {
@@ -29,10 +29,10 @@ export class PlaceOfferComponent implements OnInit, DoCheck {
 
   ngDoCheck() {
     if(this.isVegan) {
-      this.description = "vegan";
+      this.describtion = "vegan";
       this.veganBtnValue = "vegan \u{02713}";
     } else {
-      this.description = "non-vegan";
+      this.describtion = "non-vegan";
       this.veganBtnValue = "vegan?";
     }
 
@@ -46,7 +46,7 @@ export class PlaceOfferComponent implements OnInit, DoCheck {
     if(this.form.valid){
       let newOffer = new Offer(null,
                                 this.form.get("title").value, 
-                                this.description.toString(), 
+                                this.describtion.toString(), 
                                 this.form.get("amountOffered").value,
                                 this.form.get("amountOffered").value);
       console.log(newOffer.describtion+" "+typeof newOffer.describtion)

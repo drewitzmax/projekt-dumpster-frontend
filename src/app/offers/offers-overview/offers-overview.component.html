@@ -39,9 +39,15 @@
     </div>
   </ul>
   <ng-template #elseBlockOffer>
-    <p *ngIf="isUser; else elseBlockList" class="text-center">You haven't claimed any offers yet</p>
+    <div *ngIf="isUser; else elseBlockList" class="d-flex flex-column">
+      <p class="mx-auto">You haven't claimed any offers yet</p>
+      <button class=" mx-auto btn btn-outline-primary" type="button" routerLink="/">Start Browsing</button>
+    </div>
     <ng-template #elseBlockList>
-      <p class="text-center">You haven't posted any offers yet</p>
+      <div class="d-flex flex-column">
+        <p class="mx-auto">You haven't posted any offers yet</p>
+        <button class=" mx-auto btn btn-outline-primary" type="button" routerLink="/place_offer">Start placing Offers</button>
+      </div>
     </ng-template>
   </ng-template>
 </div>

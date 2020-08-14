@@ -9,7 +9,7 @@ export class Offer {
     
     getID(){ return this.offer_id }
     getTitle(){ return this.title }
-    getDescription(){ return this.describtion }
+    getDescribtion(){ return this.describtion }
     getAmountOffered(){ return this.amountOffered }
     getAmountRemaining(){ return this.amountRemaining }
 
