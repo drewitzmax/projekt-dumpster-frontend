@@ -39,6 +39,11 @@ describe('Successful SignUp as a User - TestSpec', () => {
   it('User should see the success message', async () => {
     expect(await success.successMessage.getText()).toEqual('Thanks for joining our Community!');
   });
+
+  afterAll(async () => {
+    browser.executeScript('window.sessionStorage.clear();');
+    browser.executeScript('window.localStorage.clear();');
+  });
 });
 
 // Not successful SignUp as a User
@@ -71,5 +76,10 @@ describe('Not successful SignUp as a User - TestSpec', () => {
 
   it('User should not see the success message', async () => {
     expect(await success.successMessage.isDisplayed()).toEqual(false);
+  });
+
+  afterAll(async () => {
+    browser.executeScript('window.sessionStorage.clear();');
+    browser.executeScript('window.localStorage.clear();');
   });
 });
