@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Offer } from '../offer.model';
 import { OffersService } from '../offers.service';
 import { LoginService } from 'src/app/login/login.service';
+import { Supplier } from 'src/app/suppliers/supplier.model';
 
 @Component({
   selector: 'app-offers-overview',
@@ -11,6 +12,7 @@ import { LoginService } from 'src/app/login/login.service';
 export class OffersOverviewComponent implements OnInit {
 
   offers: Offer[] = [];
+  suppliers: Supplier[] = [];
   isUser: Boolean;
   elseBlock: any;
   elseBlockDelete: any;
@@ -41,6 +43,10 @@ export class OffersOverviewComponent implements OnInit {
       let newOffer = new Offer(offer.id, offer.title, offer.describtion, offer.amountOffered,
         offer.amountRemaining);
         this.offers.push(newOffer);
+        console.log(offer)
+        let newSupplier = new Supplier(null, offer.provider.name, null, null, null, null, null, null);
+          this.suppliers.push(newSupplier);
+      
     } 
   }
 

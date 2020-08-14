@@ -14,8 +14,9 @@
               <ng-template #elseBlock>Offer #{{index+1}}</ng-template>
             </div>
             <div class=" pt-2 col-md-4">
-              {{this.offers[index].amountRemaining}} out of {{this.offers[index].amountOffered}}
-              Meals remaining
+              <div *ngIf="isUser; else elseBlockDetails">{{this.suppliers[index].name}}</div>
+              <ng-template #elseBlockDetails>{{this.offers[index].amountRemaining}} out of {{this.offers[index].amountOffered}}
+                Meals remaining</ng-template>
             </div>
             <div class=" pt-2 col-md-2">
               {{this.offers[index].describtion}}

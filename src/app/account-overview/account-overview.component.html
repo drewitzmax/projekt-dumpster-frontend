@@ -13,8 +13,9 @@
               <ng-template #elseBlock>Offer #{{index+1}}</ng-template>
             </div>
             <div class="ml-2 pt-2">
-              {{this.offers[index].amountRemaining}} out of {{this.offers[index].amountOffered}}
-              Meals remaining
+              <div *ngIf="isUser; else elseBlockDetails">{{this.offers[index].provider.name}}}</div>
+              <ng-template #elseBlockDetails>{{this.offers[index].amountRemaining}} out of {{this.offers[index].amountOffered}}
+                Meals remaining</ng-template>
             </div>
             <div *ngIf="isUser; else elseBlockDelete">
               <button class="btn btn-danger btn-sm ml-auto" (click)="deleteOrderOnClick(offer.offer_id)">

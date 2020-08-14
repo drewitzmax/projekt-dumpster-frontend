@@ -10,14 +10,15 @@
       <li class="nav-item lead ml-2">
         <a class="nav-link" routerLink="about">About</a>
       </li>
-      <li class="nav-item lead ml-2">
-        <a class="nav-link" routerLink="place_offer" [hidden]="(!this.loginService.isLoggedin()||this.loginService.isUser)">Place Offer</a>
-      </li>
-      <li class="nav-item lead ml-2">
-        <a class="nav-link" routerLink="offer_overview" [hidden]="!(this.loginService.isLoggedin())">{{this.loginService.offerOverviewNav}}</a>
-      </li>
     </ul>
     <ul class="nav navbar-nav flex-row ml-auto">
+
+      <li class="nav-item lead mx-1">
+        <a class="nav-link" routerLink="place_offer" [hidden]="(!this.loginService.isLoggedin()||this.loginService.isUser)">Place Offer</a>
+      </li>
+      <li class="nav-item lead mr-4">
+        <a class="nav-link" routerLink="offer_overview" [hidden]="!(this.loginService.isLoggedin())">{{this.loginService.offerOverviewNav}}</a>
+      </li>
       <app-login></app-login>
       <li class="nav-item mr-1 order-sm-0" [hidden]="(this.loginService.isLoggedin())">
         <button class="btn btn-outline-info btn-lg p-2 pr-3 font-weight-light" style="width:100%;" type="button" routerLink="signup" onclick="this.blur();">Sign Up</button>
