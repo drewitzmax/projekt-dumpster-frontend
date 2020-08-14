@@ -13,13 +13,21 @@ exports.config = {
   // Turn off the promise_manager
   SELENIUM_PROMISE_MANAGER: false,
   allScriptsTimeout: 11000,
-  specs: [
-    './src/testSpecs/pages/*.spec.ts'
+  suites: {
+    all: ['./src/testSpecs/pages/*.spec.ts','./src/testSpecs/features/SignUp/*.spec.ts','./src/testSpecs/features/Login/*.spec.ts'],
+    pages: ['./src/testSpecs/pages/*.spec.ts'],
+    allfeatures: ['./src/testSpecs/features/SignUp/*.spec.ts','./src/testSpecs/features/Login/*.spec.ts'],
+    login: ['./src/testSpecs/features/Login/*.spec.ts'],
+    signup: ['./src/testSpecs/features/SignUp/*.spec.ts'],
+  },
+
+  multiCapabilities: [
+    {browserName: 'chrome'},
+    {browserName: 'firefox'}
   ],
 
-  capabilities: {
-    browserName: 'firefox'
-  },
+  maxSessions: 2,
+
 
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
@@ -46,10 +54,10 @@ exports.config = {
 
       // Add HTML2Reporter
       env.addReporter(new Jasmine2HtmlReporter({
-        savePath: '../e2e/reporter/reports - ' + browsername,
-        screenshotsFolder: '../e2e/reporter/images - ' + browsername,
-        takeScreenshots: false,
-        takeScreenshotsOnlyOnFailures: true,
+        savePath: './e2e/reporter/reports - ' + browsername,
+        screenshotsFolder: './e2e/reporter/images - ' + browsername,
+        takeScreenshots: true,
+        takeScreenshotsOnlyOnFailures: false,
       }));
 
       // Add SpecReporter for console output
