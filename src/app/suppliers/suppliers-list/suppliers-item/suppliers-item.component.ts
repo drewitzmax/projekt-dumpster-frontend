@@ -13,7 +13,8 @@ import { OffersComponent } from 'src/app/offers/offers.component';
 export class SuppliersItemComponent implements OnInit {
   suppliers: Supplier[];
   hideBody: boolean = true;
-
+  @ViewChild(OffersComponent) child;  
+  veganFlag: boolean;
 
 
   constructor(private supService: SuppliersService) {}
