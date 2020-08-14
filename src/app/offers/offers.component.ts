@@ -19,7 +19,7 @@ export class OffersComponent implements OnInit {
   offers: Offer[] = [];
   offersNonVegan: Offer[] = [];
   offersVegan: Offer[] = [];
-
+  offersAvailable: boolean = false;
 
   constructor(private offersService: OffersService, public loginService: LoginService) {}
 
@@ -38,17 +38,17 @@ export class OffersComponent implements OnInit {
       for (let item in data) {
         if (data.hasOwnProperty(item)) {
           let offer = data[item];
-          console.log(offer)
           if (offer.provider.id == this.providerId) {
             if (offer.amountRemaining > 0) {
-              if(offer.describtion.equals("vegan")){
+              if(offer.describtion == "non-vegan"){
+                amountOfferedTotal += Number(offer.amountOffered);
+                amountRemainingTotal += Number(offer.amountRemaining);
+                if (!firstAvailableOfferId) firstAvailableOfferId = offer.id;
+              }else if(offer.describtion == "vegan"){
                 amountOfferedTotalVegan += Number(offer.amountOffered);
                 amountRemainingTotalVegan += Number(offer.amountRemaining);
               if (!firstAvailableVeganOfferId) firstAvailableVeganOfferId = offer.id;
               }
-              amountOfferedTotal += Number(offer.amountOffered);
-              amountRemainingTotal += Number(offer.amountRemaining);
-              if (!firstAvailableOfferId) firstAvailableOfferId = offer.id;
             }
           }
         }
@@ -56,22 +56,24 @@ export class OffersComponent implements OnInit {
       let newOfferNonVegan = new Offer(firstAvailableOfferId, null, "non-vegan", amountOfferedTotal,
       amountRemainingTotal);
       this.offersNonVegan.push(newOfferNonVegan);
-      let newVeganOffer = new Offer(firstAvailableOfferId, null, "vegan", amountOfferedTotalVegan,
+      let newVeganOffer = new Offer(firstAvailableVeganOfferId, null, "vegan", amountOfferedTotalVegan,
       amountRemainingTotalVegan);
       this.offersVegan.push(newVeganOffer);
       let hasVegan: String = "non-vegan";
       if(amountRemainingTotalVegan > 0) hasVegan = "vegan";
       let newOffer = new Offer(firstAvailableOfferId, null, hasVegan, amountOfferedTotal + amountOfferedTotalVegan, amountRemainingTotal + amountRemainingTotalVegan);
       this.offers.push(newOffer);
+      if(this.offers[0].amountRemaining > 0){
+        this.offersAvailable = true;
+      }
     });
   }
-
-
-
 
   public claimOfferOnClick(offerId: Number) {
     this.offersService.claimOffer(offerId).subscribe(data=>{
       this.offers = [];
+      this.offersNonVegan = [];
+      this.offersVegan = [];
       this.ngOnInit();
     });
   }

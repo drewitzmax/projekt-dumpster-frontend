@@ -49,7 +49,7 @@ export class PlaceOfferComponent implements OnInit, DoCheck {
                                 this.description.toString(), 
                                 this.form.get("amountOffered").value,
                                 this.form.get("amountOffered").value);
-      console.log(newOffer.description+" "+typeof newOffer.description)
+      console.log(newOffer.describtion+" "+typeof newOffer.describtion)
       this.offerService.placeOffer(newOffer).subscribe(offer => console.log(offer));
       this.offerService.offerform.reset();
       this.submitted = false;

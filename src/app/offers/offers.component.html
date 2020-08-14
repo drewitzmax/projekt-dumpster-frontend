@@ -8,19 +8,29 @@
         <div class="col-md-6">
         </div>
       </div>
-      <div *ngFor="let offer of offers; let index = index">
-        <div *ngIf="offer.amountRemaining > 0; else elseBlock" class="row card-text">
+      <div *ngFor="let offerNonVegan of offersNonVegan; let index = index">
+        <div *ngIf="offerNonVegan.amountRemaining > 0" class="row card-text">
           <div class="col-md-9">
-            <p>{{this.offers[index].amountRemaining}} Meals remaining</p>
+            <p>{{this.offersNonVegan[index].amountRemaining}} non-vegan Meals remaining</p>
           </div>
           <div class="col-md-3">
-            <button class="btn btn-success btn-sm" [hidden]="(!this.loginService.isLoggedin()||!this.loginService.isUser)" (click)="claimOfferOnClick(offer.offer_id)">Order now</button>
+            <button class="btn btn-success btn-sm" [hidden]="(!this.loginService.isLoggedin()||!this.loginService.isUser)" (click)="claimOfferOnClick(offerNonVegan.offer_id)">Order now</button>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let offerVegan of offersVegan; let index = index">
+        <div *ngIf="offerVegan.amountRemaining > 0" class="row card-text mt-2">
+          <div class="col-md-9">
+            <p>{{this.offersVegan[index].amountRemaining}} vegan Meals remaining</p>
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-success btn-sm" [hidden]="(!this.loginService.isLoggedin()||!this.loginService.isUser)" (click)="claimOfferOnClick(offerVegan.offer_id)">Order now</button>
           </div>
         </div>
       </div>
     </div>
-    <ng-template #elseBlock>
+    <div *ngIf="!offersAvailable">
       <p class="card-text">No offers available</p>
-    </ng-template>
+    </div>
   </div>
 </div>
