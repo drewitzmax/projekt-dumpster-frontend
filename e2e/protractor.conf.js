@@ -22,10 +22,9 @@ exports.config = {
   },
 
   multiCapabilities: [
-    {browserName: 'chrome'},
-    {browserName: 'firefox'}
+    {'browserName': 'chrome'},
+    {'browserName': 'firefox'},
   ],
-
   maxSessions: 2,
 
 
