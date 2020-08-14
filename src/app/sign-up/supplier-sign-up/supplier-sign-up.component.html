@@ -1,5 +1,5 @@
-<div class="container">
-    <h2 class="text-center mt-3 mb-3">Create your account</h2>
+<div class="container px-5">
+    <h2 class="text-center mt-3 mb-3">Create your Company Account</h2>
     <form class="row flex-wrap justify-content-around" [formGroup]="this.signUpService.supplierform" (ngSubmit)="onSubmit()">
       <div class="row mb-5">
         <input type="hidden" formControlName="$id">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="form-group col-6">
-          <label class="lead">Email</label>
+          <label class="lead">Email/Username</label>
           <input formControlName="email" class="form-control"
             [ngClass]="{'is-invalid':submitted && formControls.email.errors}">
           <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors?.email">This field must be an email</div>
