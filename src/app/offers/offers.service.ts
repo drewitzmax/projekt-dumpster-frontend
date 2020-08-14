@@ -74,7 +74,7 @@ export class OffersService {
   public placeOffer(offer: Offer): Observable<Offer> {
     this.updateCredentials();
     let headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.username + ":" + this.password) })
-    return this.http.post<Offer>(this.offerUrl, offer, { headers })
+    return this.http.post<Offer>(this.offerUrl, offer, { headers, responseType: 'text' as 'json'  })
       .pipe(
         catchError(this.handleError)
       );

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Supplier } from './supplier.model'
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class SuppliersService{
@@ -15,28 +17,34 @@ export class SuppliersService{
         "https://www.gutekueche.at/img/rezept/170/460x307_wiener-schnitzel.jpg")
     ]; */
 
-    private suppliers: Supplier[] = [
-
-    ];
-
     constructor(private http: HttpClient) {
-        this.http.get(this.url + "/provider").toPromise().then(
-          data => {
-          
-          for( let item in data) {
-            if(data.hasOwnProperty(item)){
-                let prov = data[item];
-                let newSupplier = new Supplier(prov.id, prov.name, prov.address, prov.phoneNumber,
-                    prov.email, prov.password, prov.homepageUrl, prov.photos);
-                
-                this.suppliers.push(newSupplier);              
-            }
-          }
-        })
-       }
+        this.getSuppliers();
+    }
     
 
     getSuppliers() {
-        return this.suppliers;
+        return this.http.get(this.url + "/provider").pipe(catchError(this.handleError))
     }
+
+    public handleError(error) {
+    let errorMessage = '';
+    let successMessage = '';
+    if (error instanceof HttpErrorResponse) {
+      if (error.error instanceof ErrorEvent) {
+        console.error("Error Event");
+      } else {
+        console.log(`error status : ${error.status} ${error.statusText}`);
+        if (error.status == 201) successMessage = "SUCCESS";
+        if (error.status >= 400){
+          errorMessage = error.error;
+          window.alert(errorMessage);
+        } 
+      }
+    } else {
+      console.error("something went wrong");
+    }
+
+    return throwError(error);
+
+  }
 }

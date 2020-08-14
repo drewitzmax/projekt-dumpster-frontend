@@ -8,19 +8,19 @@
       <div class="row mb-5">
           <input type="hidden" formControlName="$id">
   
-        <div class="form-group mx-auto col-md-8 col-12">
-            <label class="lead">Title</label>
+        <div class="form-group mx-auto col-md-8 col-10">
+            <label class="lead text-center">Title</label>
           <input formControlName="title" class="form-control"
             [ngClass]="{'is-invalid':submitted && formControls.title.errors}">
             <div class="invalid-feedback" *ngIf="submitted && formControls.title?.errors?.required">This field is required</div>
         </div>
-        <div class="form-group mx-auto col-md-8 col-12">
+        <div class="form-group mx-auto col-md-8 col-10">
             <button type="button" onclick="this.blur();" (click)="toggleVegan()"
             [ngClass]="(this.isVegan)?'btn btn-success':'btn btn-outline-success'">{{this.veganBtnValue}}</button>
         </div>
         
-        <div class="form-group mx-auto col-md-8 col-12">
-            <label class="lead">How much do you have to spare?</label>
+        <div class="form-group mx-auto col-md-8 col-10">
+            <label class="lead text-center">How much do you have to spare?</label>
           <input formControlName="amountOffered" class="form-control"
           type="number" 
           [ngClass]="{'is-invalid':submitted && formControls.amountOffered.errors}">

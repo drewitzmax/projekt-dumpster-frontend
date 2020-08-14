@@ -14,7 +14,7 @@ export class OffersOverviewComponent implements OnInit {
   isUser: Boolean;
   elseBlock: any;
   elseBlockDelete: any;
-
+  isLoading: boolean;
 
   constructor(public offersService: OffersService, public loginService: LoginService) { }
 
@@ -38,7 +38,7 @@ export class OffersOverviewComponent implements OnInit {
   public createOffersFromData(data){
     for (let item in data) {
       let offer = data[item];
-      let newOffer = new Offer(offer.id, offer.title, null, offer.amountOffered,
+      let newOffer = new Offer(offer.id, offer.title, offer.describtion, offer.amountOffered,
         offer.amountRemaining);
         this.offers.push(newOffer);
     } 
