@@ -7,28 +7,32 @@
     <div *ngFor="let offer of offers; let index = index">
       <div class="row card-text">
         <div class="col-md-12">
-          <li class="list-group-item d-flex justify-content-between">
-            <div class="pt-2">
+          <li class="list-group-item">
+            <div class="row">
+            <div class="pt-2 col-md-3">
               <div *ngIf="isUser; else elseBlock">Order #{{index+1}}</div>
               <ng-template #elseBlock>Offer #{{index+1}}</ng-template>
             </div>
-            <div class="ml-auto pt-2">
+            <div class=" pt-2 col-md-4">
               {{this.offers[index].amountRemaining}} out of {{this.offers[index].amountOffered}}
               Meals remaining
             </div>
-            <div class="ml-auto pt-2">
+            <div class=" pt-2 col-md-2">
               {{this.offers[index].describtion}}
             </div>
-            <div *ngIf="isUser; else elseBlockDelete">
-              <button class="btn btn-danger btn-sm ml-auto" (click)="deleteOrderOnClick(offer.offer_id)">
-                Delete Order
-              </button>
+            <div class="col-md-3 text-right">
+              <div *ngIf="isUser; else elseBlockDelete">
+                <button class="btn btn-danger btn-sm ml-auto" (click)="deleteOrderOnClick(offer.offer_id)">
+                  Delete Order
+                </button>
+              </div>
+              <ng-template class="ml-auto" #elseBlockDelete>
+                <button class="btn btn-danger btn-sm ml-auto" (click)="deleteOfferOnClick(offer.offer_id)">
+                  Delete Offer
+                </button>
+              </ng-template>
             </div>
-            <ng-template #elseBlockDelete>
-              <button id="" class="btn btn-danger btn-sm ml-auto" (click)="deleteOfferOnClick(offer.offer_id)">
-                Delete Offer
-              </button>
-            </ng-template>
+          </div>
           </li>
         </div>
       </div>
